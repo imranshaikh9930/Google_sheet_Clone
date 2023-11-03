@@ -1,0 +1,422 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: open Sans;
+  font-weight: 500;
+}
+
+.main-option-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-container {
+  display: flex;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.indexOption {
+  padding: 10px;
+}
+
+#indexOptionList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 10px;
+  font-family: open Sans;
+  color: #202124;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+#indexOptionList > li {
+  padding: 2px 7px;
+  font-size: 14px;
+}
+
+#indexOptionList :hover {
+  background-color: #e1e3e6;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#menuOptionList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  font-family: open Sans;
+  color: #202124;
+  border-radius: 10px;
+  background-color: #edf2fa;
+  padding: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.upperIndexOption {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.sheetOptions {
+  display: flex;
+  flex-direction: row;
+}
+
+#menuOptionList > li {
+  padding: 2px 0px;
+  margin-left: 20px;
+  position: relative;
+  /* font-size: 14px; */
+}
+
+#menuOptionList > li > div {
+  /* height: 18px; */
+  padding: 2px;
+}
+
+.search {
+  background-color: white;
+  min-width: 300px;
+  border-radius: 5px;
+}
+
+#searchInput {
+  outline: none;
+  border: none;
+  color: #bbbbbb;
+}
+
+#searchInput:focus {
+  border: 2px solid #0b57d2;
+}
+
+#font-selector,
+#font-size-selector {
+  border: none;
+  background-color: #edf2fa;
+}
+
+#font-selector > option,
+#font-size-selector > option {
+  background-color: white;
+}
+
+.vertical-line {
+  background-color: #e1e3e6;
+  width: 1px;
+  height: 30px;
+}
+
+#menuOptionList :hover {
+  background-color: #e1e3e6;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#search :hover {
+  background-color: white;
+}
+
+#function-dropdown > a :hover {
+  background-color: red;
+}
+
+#menuOptionList :hover .hoverSuggetion {
+  display: block;
+}
+
+.material-icons {
+  color: #595d5d;
+  cursor: pointer;
+}
+
+.hoverSuggetion {
+  position: absolute;
+  background-color: #232323;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  display: none;
+  min-width: max-content;
+  top: 38px;
+}
+
+.active-option {
+  background-color: #d3e3fd;
+  border-radius: 5px;
+  color: black;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.math-position {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0px;
+  align-items: center;
+  background-color: white;
+}
+
+#position {
+  /* border: 1px solid #dfe4e9; */
+  padding: 0px 20px;
+  min-width: 52px;
+}
+
+#math {
+  display: flex;
+}
+
+#color-picker,
+#bg-color-picker {
+  opacity: 0;
+}
+
+.grid {
+  overflow: scroll;
+  position: sticky;
+  left: 0;
+  font-size: 13px;
+  scroll-snap-type: mandatorys;
+}
+
+.grid-header {
+  display: flex;
+  width: fit-content;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  border-collapse: collapse;
+  /* padding: auto; */
+  box-sizing: content-box;
+}
+
+.grid-header :first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background-color: #f8f9fa;
+  min-width: 50px;
+  border: 1px solid #c7c7c7;
+  /* padding: 10px 0px; */
+  border-right-width: 0px;
+  box-sizing: content-box;
+}
+
+.column {
+  min-width: 100px;
+  min-height: 28px;
+  border: 1px solid #c0c0c0;
+  text-align: center;
+  background-color: white;
+  flex: 1;
+  border-right-width: 0px;
+  padding: 2px 0px;
+  z-index: 2;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* box-sizing: border-box; */
+}
+
+.column .spanSort {
+  display: none;
+  font-size: 18px;
+}
+
+.column .spanText {
+  border: none;
+  background-color: transparent;
+  position: static;
+  min-width: fit-content;
+  white-space: nowrap;
+}
+
+.column:hover .spanSort {
+  display: block;
+}
+
+.spanSort:hover {
+  background-color: #f0f1f0;
+  border-radius: 50%;
+}
+
+.row {
+  display: flex;
+}
+
+.row :first-child {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  left: 0;
+  background-color: white;
+  z-index: 2;
+  min-width: 51px;
+}
+
+.cell {
+  border: 1px solid #e1e1e1;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  min-width: 101px;
+  border-collapse: collapse;
+  border-radius: 0px;
+  outline: none;
+  /* overflow: hidden; */
+  box-sizing: border-box;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  padding-left: 15px;
+  background-color: #f9fbfd;
+}
+
+.sheets {
+  display: flex;
+}
+
+#addSheet:hover {
+  cursor: pointer;
+  background-color: #e8ebee;
+  border-radius: 50%;
+}
+
+.sheet {
+  display: flex;
+  color: #444746;
+  padding: 7px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.arrow-button {
+  border: none;
+  background-color: transparent;
+}
+
+.sheet:hover {
+  cursor: pointer;
+  background-color: #e8ebee;
+}
+
+.sheet-active:hover {
+  background-color: #d8e5f8;
+}
+
+.sheet-active {
+  background-color: #e1e9f7;
+  color: #0b57d2;
+}
+
+#functions :hover .dropdown-content {
+  display: block;
+}
+
+.column .dropdown {
+  position: absolute;
+  display: none;
+  max-width: 19px;
+  justify-content: center;
+  border-radius: 50%;
+  align-items: left;
+  left: 30px;
+}
+
+.column .dropbtn {
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  overflow: hidden;
+  min-width: fit-content;
+  min-height: fit-content;
+}
+
+.column:hover .dropdown {
+  position: absolute;
+  display: flex;
+  /* max-width: 20px; */
+  justify-content: center;
+  border-radius: 50%;
+  align-items: center;
+  left: 75px;
+  white-space: nowrap;
+}
+
+.dropdown:hover {
+  background-color: #f0f1f0;
+}
+
+/* Style the dropdown button */
+
+/* Style the dropdown content (hidden by default) */
+.column .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  top: 27px;
+  left: -4px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 0px;
+  outline: none;
+
+}
+
+/* Style the dropdown links */
+.column .dropdown-content a {
+  color: black;
+  padding: 5px 25px;
+  text-decoration: none;
+  display: block;
+  border: 0px;
+  font-size: 12px;
+
+}
+
+.column .icons {
+  position: absolute;
+  top: 5px;
+  left: -10;
+  font-size: 17px;
+}
+
+/* Change color of dropdown links on hover */
+.column .dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown content when the dropdown button is clicked */
+.column .show {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+

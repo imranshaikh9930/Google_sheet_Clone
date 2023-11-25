@@ -78,7 +78,7 @@ function highlightRowAndColoumn(e) {
   currentId.style.border = "1px solid #135dd2";
   position.innerText = currentId.id;
   formulas.innerText = currentId.innerText.trim();
-  console.log(num, rowId);
+//   console.log(num, rowId);
 }
 
 function onCellBlur(e) {
@@ -181,7 +181,7 @@ function onClickCut() {
   copiedCell.style = activeCell.style.cssText;
   console.log(copiedCell.style.backgroundColor);
   copiedCell.innerText = activeCell.innerText;
-  console.log(activeCell.style);
+  // console.log(activeCell.style);
   activeCell.style = document.createElement("div").cssText;
 
   activeCell.style.fontWeight = "400";

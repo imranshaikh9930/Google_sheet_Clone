@@ -1,11 +1,10 @@
 const functions = document.getElementsByClassName("function-dropdown")[0];
-console.log(functions);
+// console.log(functions);
 
 function onClickFunctions(e) {
   const functionClass = document.getElementsByClassName("function-dropdown")[0];
   functionClass.classList.toggle("show");
 }
-
 function functionSum(e) {
   activeCell.innerText = "=SUM()";
   activeCell.addEventListener("keydown", calculateSum);
@@ -13,25 +12,24 @@ function functionSum(e) {
 
 function calculateSum(e) {
   if (e.keyCode === 13) {
-    let sum = 0;
     const formula = e.target.innerText;
-    const cellText = formula.match(/[a-zA-Z]+\d+/g);
 
-    for (let i = 0; i < cellText.length; i++) {
-      here: for (let j = 0; j < data[currentSheetIndex - 1].length; j++) {
-        for (let k = 0; k < data[currentSheetIndex - 1][j].length; k++) {
-          if (
-            cellText[i].toUpperCase() === data[currentSheetIndex - 1][j][k].id
-          ) {
-            sum += parseInt(
-              data[currentSheetIndex - 1][j][k].innerText === undefined
-                ? "0"
-                : data[currentSheetIndex - 1][j][k].innerText
-            );
-            break here;
-          }
-        }
-      }
+    // console.log("Formula:", formula);
+
+    // Extract numeric values using a regular expression
+    const numbers = formula.match(/\d+/g);
+
+    if (!numbers || numbers.length === 0) {
+      // Handle the case where there are no numeric values
+      activeCell.innerText = "ERROR";
+      activeCell.removeEventListener("keydown", calculateSum);
+      return;
+    }
+
+    let sum = 0;
+
+    for (let i = 0; i < numbers.length; i++) {
+      sum += parseInt(numbers[i], 10) || 0;
     }
 
     activeCell.innerText = sum;
@@ -47,29 +45,27 @@ function functionAverage(e) {
 function calculateAverage(e) {
   if (e.keyCode === 13) {
     const formula = e.target.innerText;
-    const cellText = formula.match(/[a-zA-Z]+\d+/g);
-    console.log(cellText, formula);
-    let sum = 0;
 
-    for (let i = 0; i < cellText.length; i++) {
-      here: for (let j = 0; j < data[currentSheetIndex - 1].length; j++) {
-        for (let k = 0; k < data[currentSheetIndex - 1][j].length; k++) {
-          if (
-            cellText[i].toUpperCase() === data[currentSheetIndex - 1][j][k].id
-          ) {
-            sum += parseInt(
-              data[currentSheetIndex - 1][j][k].innerText === undefined
-                ? "0"
-                : data[currentSheetIndex - 1][j][k].innerText
-            );
-            break here;
-          }
-        }
-      }
+    // console.log("Formula:", formula);
+
+    // Extract numeric values using a regular expression
+    const numbers = formula.match(/\d+/g);
+
+    if (!numbers || numbers.length === 0) {
+      // Handle the case where there are no numeric values
+      activeCell.innerText = "ERROR";
+      activeCell.removeEventListener("keydown", calculateSum);
+      return;
     }
 
-    activeCell.textContent = Math.floor(sum / cellText.length);
-    activeCell.removeEventListener("keydown", calculateAverage);
+    let sum = 0;
+
+    for (let i = 0; i < numbers.length; i++) {
+      sum += parseInt(numbers[i], 10) || 0;
+    }
+
+    activeCell.innerText = sum / numbers.length;
+    activeCell.removeEventListener("keydown", calculateSum);
   }
 }
 
@@ -81,7 +77,7 @@ function functionCount(e) {
 function calculateCount(e) {
   if (e.keyCode === 13) {
     const formula = e.target.innerText;
-    const cellText = formula.match(/[a-zA-Z]+\d+/g);
+    const cellText = formula.match(/\d+/g);
     activeCell.textContent = cellText.length;
     activeCell.removeEventListener("keydown", calculateCount);
   }
@@ -95,32 +91,16 @@ function functionMax(e) {
 function calculateMax(e) {
   if (e.keyCode === 13) {
     const formula = e.target.innerText;
-    const cellText = formula.match(/[a-zA-Z]+\d+/g);
+    const cellText = formula.match(/\d+/g);
 
-    let sum = -Infinity;
+    let max = -Infinity;
 
     for (let i = 0; i < cellText.length; i++) {
-      here: for (let j = 0; j < data[currentSheetIndex - 1].length; j++) {
-        for (let k = 0; k < data[currentSheetIndex - 1][j].length; k++) {
-          if (
-            cellText[i].toUpperCase() === data[currentSheetIndex - 1][j][k].id
-          ) {
-            sum = Math.max(
-              parseInt(
-                data[currentSheetIndex - 1][j][k].innerText === ""
-                  ? "0"
-                  : data[currentSheetIndex - 1][j][k].innerText
-              ),
-              sum
-            );
-            break here;
-          }
-        }
-      }
+      max = Math.max(max, cellText[i]);
     }
 
-    activeCell.innerHTML = sum === -Infinity ? 0 : sum;
-    activeCell.removeEventListener("keydown", calculateMax);
+    activeCell.textContent = max;
+    activeCell.removeEventListener("keydown", calculateCount);
   }
 }
 
@@ -132,31 +112,15 @@ function functionMin(e) {
 function calculateMin(e) {
   if (e.keyCode === 13) {
     const formula = e.target.innerText;
-    const cellText = formula.match(/[a-zA-Z]+\d+/g);
+    const cellText = formula.match(/\d+/g);
 
-    let sum = Infinity;
+    let max = Infinity;
 
     for (let i = 0; i < cellText.length; i++) {
-      here: for (let j = 0; j < data[currentSheetIndex - 1].length; j++) {
-        for (let k = 0; k < data[currentSheetIndex - 1][j].length; k++) {
-          if (
-            cellText[i].toUpperCase() === data[currentSheetIndex - 1][j][k].id
-          ) {
-            sum = Math.min(
-              parseInt(
-                data[currentSheetIndex - 1][j][k].innerText === ""
-                  ? "0"
-                  : data[currentSheetIndex - 1][j][k].innerText
-              ),
-              sum
-            );
-            break here;
-          }
-        }
-      }
+      max = Math.min(max, cellText[i]);
     }
 
-    activeCell.textContent = sum === Infinity ? 0 : sum;
-    activeCell.removeEventListener("keydown", calculateMin);
+    activeCell.textContent = max;
+    activeCell.removeEventListener("keydown", calculateCount);
   }
 }

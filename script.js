@@ -100,6 +100,7 @@ function createInsideGrid() {
 
     const rowData = [];
 
+    // ASCII Value
     for (let i = 64; i <= 90; i++) {
       const cell = document.createElement("div");
       cell.className = "cell";
@@ -316,7 +317,7 @@ function searchInCell(e) {
 }
 
 function exportFile() {
-  console.log(data[currentSheetIndex - 1]);
+  // console.log(data[currentSheetIndex - 1]);
   const blob = new Blob([JSON.stringify(sheets[0])], {
     type: "application/json",
   });
@@ -334,4 +335,31 @@ function exportFile() {
 
   link.dispatchEvent(evt);
   link.remove();
+}
+
+
+function importFile() {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json";
+
+  input.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const importedData = JSON.parse(e.target.result);
+
+        // Do something with the imported data
+        console.log(importedData);
+      };
+
+      reader.readAsText(file);
+    }
+  });
+
+  // Trigger the file input click event
+  input.click();
 }

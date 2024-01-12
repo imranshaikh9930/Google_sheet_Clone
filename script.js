@@ -68,6 +68,7 @@ function createInsideGrid() {
     column.style.display = "flex";
     spanText.innerText = char;
     spanText.className = "spanText";
+  
 
     column.id = char;
     column.className = "column";
@@ -76,20 +77,8 @@ function createInsideGrid() {
     span.className = "material-icons spanSort";
     span.innerText = "arrow_drop_down";
 
-    const div = document.createElement("div");
-    div.className = "dropdown";
-    div.innerHTML = `<button class="dropbtn material-icons" onclick="drop(this)">arrow_drop_down</button>
-    <div class="dropdown-content">
-      <a href="#" onclick="sortAtoZ(this)"><span class=" dropbtn material-icons icons">
-    sort_by_alpha
-      </span>Sort Sheet A to Z</a>
-      <a href="#" onclick="sortZtoA(this)"><span class=" dropbtn material-icons icons" style="top:42px;left:9px">
-      sort_by_alpha_alt
-      </span>Sort Sheet Z to A</a>
-    </div>`;
+       column.appendChild(spanText);
 
-    column.appendChild(spanText);
-    column.appendChild(div);
 
     gridHeader.appendChild(column);
   }
@@ -136,71 +125,7 @@ function createInsideGrid() {
 
 addSheets.addEventListener("click", createGrid);
 
-function sortDataByColumn(columnIndex) {
-  const d = [];
-  // console.log(data.length);
-  // console.log(data[currentActiveSheet-1].length, data.length);
-  // console.log(data[parseInt(currentSheetIndex) - 1].length);
-  // console.log(parseInt(currentActiveSheet) - 1);
 
-  for (let i = 0; i < 99; i++) {
-    const value =
-      data[parseInt(currentSheetIndex) - 1][i][columnIndex].innerText;
-    if (value != "") d.push(value);
-    // console.log("");
-    // console.log(data[i][columnIndex].innerText, data[i][columnIndex]);
-  }
-
-  d.sort();
-
-  // console.log(d);
-
-  // const he = data[parseInt(currentSheetIndex) - 1];
-  // data[parseInt(currentSheetIndex) - 1].sort(function (a, b) {
-  //   const value1 =
-  //     a[columnIndex].innerText === "" ? Infinity : a[columnIndex].innerText;
-  //   const value2 =
-  //     b[columnIndex].innerText === "" ? Infinity : b[columnIndex].innerText;
-
-  //   return value1 - value2;
-  // });
-  // console.log(data);
-
-  // Update the DOM to reflect the sorted data
-  //sorting yet to be fixed
-
-  for (let j = 0; j < 99; j++) {
-    const cellId = String.fromCharCode(65 + j) + j;
-    // console.log(cellId);
-    const cell = data[parseInt(currentSheetIndex) - 1][j][columnIndex];
-
-    cell.id = cellId;
-
-    cell.innerText = d[j] === undefined ? "" : d[j];
-  }
-  // console.log(d);
-}
-
-function sortDataByColumnReverse(columnIndex) {
-  const d = [];
-
-  for (let i = 0; i < 99; i++) {
-    const value =
-      data[parseInt(currentSheetIndex) - 1][i][columnIndex].innerText;
-    if (value != "") d.push(value);
-  }
-
-  d.reverse();
-
-  for (let j = 0; j < 99; j++) {
-    const cellId = String.fromCharCode(64 + columnIndex + 1) + j;
-    // console.log(cellId);
-    const cell = data[parseInt(currentSheetIndex) - 1][j][columnIndex];
-
-    // console.log(cell, currentSheetIndex - 1, j, columnIndex);
-    cell.innerText = d[j] === undefined ? "" : d[j];
-  }
-}
 
 function sheetClicked(e) {
   const index = e.target.innerText.replace("Sheet", "");
@@ -247,20 +172,7 @@ function drop(e) {
   dropdownContent = e.nextElementSibling;
 }
 
-function sortAtoZ(e) {
-  const columnName = e.parentNode.parentNode.parentNode;
-  const index = columnName.id.charCodeAt(0) - 65;
 
-  sortDataByColumn(index);
-}
-
-function sortZtoA(e) {
-  const columnName = e.parentNode.parentNode.parentNode;
-  const index = columnName.id.charCodeAt(0) - 65;
-
-  // console.log(index);
-  sortDataByColumnReverse(index);
-}
 
 searchInput.addEventListener("click", () => {
   searchInput.style.color = "#000";
@@ -353,7 +265,7 @@ function importFile() {
         const importedData = JSON.parse(e.target.result);
 
         // Do something with the imported data
-        console.log(importedData);
+        // console.log(importedData);
       };
 
       reader.readAsText(file);
